@@ -1,20 +1,24 @@
 #include <Servo.h>
+#include "UltraSonicSensor.h"
+#include "IRSensor.h"
 
-Servo myservo;  // create servo object to control a servo
-
+Servo leftWheel;  // create servo object to control a servo
+Servo rightWheel;
+UltraSonicSensor myRanger;
+IRSensor IRSensor1(A3);
 
 void setup() {
-  myservo.attach(9,700,2300);  // attaches the servo on pin 9 to the servo object
+  leftWheel.attach(9,500,2500);  // attaches the servo on pin 9 to the servo object
+  rightWheel.attach(8,500,2500);  // attaches the servo on pin 9 to the servo object
+  Serial.begin(9600);
+  //pinMode(A3,INPUT);
 }
 
 void loop() {
-  myservo.writeMicroseconds(2300);                  // sets the servo position according to the scaled value
-  delay(3000);                           // waits for the servo to get there
-  myservo.writeMicroseconds(1500);                  // sets the servo position according to the scaled value
-  delay(3000);                           // waits for the servo to get there
-  myservo.writeMicroseconds(700);                  // sets the servo position according to the scaled value
-  delay(3000);                           // waits for the servo to get there
-  myservo.writeMicroseconds(1500);                  // sets the servo position according to the scaled value
-  delay(3000);                           // waits for the servo to get there
-
+  leftWheel.writeMicroseconds(2500);      
+  rightWheel.writeMicroseconds(500); 
+  delay(100000); 
+  //Serial.println(myRanger.read());
+  //Serial.println(IRSensor1.read());
+  //Serial.println(analogRead(A3));
 }
